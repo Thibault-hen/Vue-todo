@@ -83,9 +83,11 @@ import { computed } from 'vue'
 const props = defineProps(['tasks'])
 const emit = defineEmits(['setCompleted', 'deleteTask', 'setPending'])
 
+//Filtering the base tasks array passed as a props into two differents array for the display
 const completedTasks = computed(() => props.tasks.filter((task) => task.completed))
 const uncompletedTasks = computed(() => props.tasks.filter((task) => !task.completed))
 
+//Emiting the pending, completed and delete task actions to the parent
 const emitPendingTask = (id) => {
   emit('setPending', id)
 }

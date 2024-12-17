@@ -51,12 +51,16 @@ import { ref, onMounted } from 'vue'
 import NewTodo from '@/components/NewTodo.vue'
 import TodoItem from '@/components/TodoItem.vue'
 
+//error text when trying to add a new task with empty string
 const taskError = ref(null)
 
+//array containing all the tasks
 const tasks = ref([])
 
+//Get the completed tasks count
 const getCompleted = () => tasks.value.filter((task) => task.completed).length
 
+//Add a new task into the tasks array
 const addTask = (task) => {
   const addId = tasks.value.length
   if (typeof task === 'undefined' || task.toString().trim() === '') {
@@ -69,14 +73,17 @@ const addTask = (task) => {
   tasks.value.push({ id: addId + 1, task: task, completed: false })
 }
 
+//Save the tasks array into the local storage
 const setTodos = () => {
   localStorage.setItem('todos', JSON.stringify(tasks.value))
 }
 
+//Get the tasks array saved into the local storage if exist
 const getTodos = () => {
   tasks.value = JSON.parse(localStorage.getItem('todos')) ?? []
 }
 
+//Set the selected task to pending
 const setPending = (id) => {
   console.log(id)
   const index = tasks.value.findIndex((task) => task.id === id)
@@ -84,6 +91,7 @@ const setPending = (id) => {
   setTodos()
 }
 
+//Set the selected task to completed
 const setCompleted = (id) => {
   console.log(id)
   const index = tasks.value.findIndex((task) => task.id === id)
@@ -92,22 +100,26 @@ const setCompleted = (id) => {
   setTodos()
 }
 
+//Delete the selected task in the tasks array
 const deleteTask = (id) => {
   const index = tasks.value.findIndex((task) => task.id === id)
   tasks.value.splice(index, 1)
   setTodos()
 }
 
+//Delete all the completed tasks in the tasks array
 const clearCompleted = () => {
   tasks.value = tasks.value.filter((task) => !task.completed)
   setTodos()
 }
 
+//Delete all tasks in the tasks array
 const clearTasks = () => {
   tasks.value = []
   setTodos()
 }
 
+//Calling the method who retrieve tasks into the local storage on load on the component
 onMounted(() => {
   getTodos()
 })

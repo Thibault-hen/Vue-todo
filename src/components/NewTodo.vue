@@ -20,6 +20,7 @@ import { ref } from 'vue'
 const task = ref()
 const emit = defineEmits(['addTask'])
 
+//Emiting the add new task action to the parent
 const emitTask = () => {
   emit('addTask', task.value)
 }
