@@ -8,12 +8,12 @@
     </div>
     <div v-else class="flex flex-col gap-2">
       <TransitionGroup
-        enter-active-class="transition-transform duration-200 ease-out"
+        enter-active-class="transition-transform transition-opacity duration-200 ease-out"
         enter-from-class="transform translate-y-full opacity-0"
         enter-to-class="transform translate-y-0 opacity-100"
-        leave-active-class="transition-transform duration-200 ease-out"
-        leave-from-class="transform translate-y-0 opacity-100"
-        leave-to-class="transform -translate-y-full opacity-0"
+        leave-active-class="transition-transform transition-opacity duration-200 ease-out"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
       >
         <div
           v-for="task in uncompletedTasks"
@@ -47,12 +47,12 @@
     </div>
     <div v-else class="flex flex-col gap-2">
       <TransitionGroup
-        enter-active-class="transition-transform duration-200 ease-out"
+        enter-active-class="transition-transform transition-opacity duration-200 ease-out"
         enter-from-class="transform translate-y-full opacity-0"
         enter-to-class="transform translate-y-0 opacity-100"
-        leave-active-class="transition-transform duration-200 ease-out"
+        leave-active-class="transition-transform transition-opacity duration-200 ease-out"
         leave-from-class="transform translate-y-0 opacity-100"
-        leave-to-class="transform -translate-y-full opacity-0"
+        leave-to-class="transform translate-y-full opacity-0"
       >
         <div
           v-for="task in completedTasks"
