@@ -38,6 +38,7 @@
       @delete-task="deleteTask"
       @set-completed="setCompleted"
       @set-pending="setPending"
+      @edit-task="editTask"
     />
     <div class="flex justify-between mt-4">
       <p class="text-white text-xs uppercase tracking-wide">Total Todos : {{ tasks.length }}</p>
@@ -83,9 +84,14 @@ const getTodos = () => {
   tasks.value = JSON.parse(localStorage.getItem('todos')) ?? []
 }
 
+const editTask = (id, value) => {
+  const index = tasks.value.findIndex((task) => task.id === id)
+  tasks.value[index].task = value
+  setTodos()
+}
+
 //Set the selected task to pending
 const setPending = (id) => {
-  console.log(id)
   const index = tasks.value.findIndex((task) => task.id === id)
   tasks.value[index].completed = false
   setTodos()
@@ -93,7 +99,6 @@ const setPending = (id) => {
 
 //Set the selected task to completed
 const setCompleted = (id) => {
-  console.log(id)
   const index = tasks.value.findIndex((task) => task.id === id)
   console.log(tasks.value[index])
   tasks.value[index].completed = true
@@ -118,7 +123,6 @@ const clearTasks = () => {
   tasks.value = []
   setTodos()
 }
-
 //Calling the method who retrieve tasks into the local storage on load on the component
 onMounted(() => {
   getTodos()

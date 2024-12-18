@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="bg-zinc-900 min-w-[400px] p-4 rounded-md">
+    <div class="bg-zinc-900 min-w-[500px] p-4 rounded-md">
       <div>
         <TodoMain />
       </div>
